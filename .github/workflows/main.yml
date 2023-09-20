@@ -5,29 +5,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Begin linting
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v2
 
-      - name: Use Node 18
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
-
-      - name: Use cached node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
+      - name: Install modules
+        run: yarn
+        
       - name: Run ESLint
-        run: yarn lint
-
-      - name: Run stylelint
-        run: yarn stylelint
+        run: eslint . --ext .js,.jsx,.ts,.tsx

@@ -1,14 +1,22 @@
+import prisma from "@/lib/prismadb";
+
 import { TodoItem } from "@/components/TodoItem";
+
+function getTodos() {
+  return prisma.todo.findMany();
+}
 
 /**
  * @description TodoItem component
  * @version 1.0.0
  */
-export default function Home() {
-  const todos = [
-    { id: "1", title: "Learn Next.js", isDone: true },
-    { id: "2", title: "Build an App", isDone: false },
-  ];
+export default async function Home() {
+  const todos = await getTodos();
+
+  // const todos = [
+  //   { id: "1", title: "Learn Next.js", isDone: true },
+  //   { id: "2", title: "Build an App", isDone: false },
+  // ];
 
   return (
     <main className="">

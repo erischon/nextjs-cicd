@@ -17,8 +17,8 @@ async function createTodo(data: FormData) {
 
 export default function Page() {
   return (
-    <>
+    <div className="flex my-10 w-fit mx-auto">
       <FormAddTodo />
-    </>
+    </div>
   );
 }

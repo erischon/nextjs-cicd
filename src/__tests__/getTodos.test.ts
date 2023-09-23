@@ -1,19 +1,10 @@
 import { describe, beforeEach, expect, it, vi } from "vitest";
-import prisma from "./prismadb";
 
-import { getTodos } from "./getTodos";
+import { getTodos } from "../libs/getTodos";
 
-import prismaMock from "./__mocks__/prisma";
+import prismaMock from "../libs/__mocks__/prismadb";
 
-vi.mock("./prismadb.ts", () => {
-  return {
-    id: "1",
-    title: "Learn Next.js",
-    isDone: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
-});
+vi.mock("../libs/prismadb");
 
 describe("todo", () => {
   beforeEach(() => {
@@ -34,7 +25,6 @@ describe("todo", () => {
 
     // Act
     const todos = await getTodos();
-    console.log("======todos", todos);
 
     // Assert
     expect(todos).toStrictEqual([mockTodo]);

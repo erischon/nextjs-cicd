@@ -1,15 +1,5 @@
-import prisma from "@/lib/prismadb";
-
 import { TodoItem } from "@/components/TodoItem";
-
-/**
- * @description Get all todos from database
- * @version 1.0.0
- * @returns {Promise<Todo[]>}
- */
-function getTodos() {
-  return prisma.todo.findMany();
-}
+import { getTodos } from "@/libs/getTodos";
 
 /**
  * @description TodoItem component

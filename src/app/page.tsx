@@ -21,10 +21,6 @@ export default async function Home() {
 
   return (
     <main className="">
-      <div className="flex my-10 w-fit mx-auto">
-        <FormAddTodo />
-      </div>
-
       <div className="flex gap-5 border border-slate-700 px-5 py-2 rounded-sm">
         <div>
           <input type="radio" />

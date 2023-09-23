@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-800 text-slate-100 px-10 py-5">
+      <body className="max-w-3xl mx-auto bg-slate-800 text-slate-100 px-10 py-5">
         <Header />
 
         {children}

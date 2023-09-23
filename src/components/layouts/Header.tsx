@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Button from "../Button";
 
 /**
  * @description Header component
@@ -11,9 +10,6 @@ export function Header() {
       <Link href="/">
         <h1 className="text-2xl font-bold">A Basic Todo App</h1>
       </Link>
-      <Button>
-        <Link href="/new">New</Link>
-      </Button>
     </header>
   );
 }

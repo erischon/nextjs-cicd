@@ -7,9 +7,9 @@ type ButtonProps = {
  * @description Button component
  * @version 1.0.0
  */
-export default function Button({ children }: ButtonProps) {
+export default function Button({ children, type }: ButtonProps) {
   return (
-    <button className="border rounded-sm py-2 px-6 hover:bg-slate-700">
+    <button className="border-2 border-slate-400 rounded-sm py-2 px-6 hover:bg-slate-700">
       {children}
     </button>
   );

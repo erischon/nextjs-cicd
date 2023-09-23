@@ -4,13 +4,14 @@ type TodoItemProps = {
   id: string;
   title: string;
   isDone: boolean;
+  toggleTodo: (id: string, complete: boolean) => void;
 };
 
 /**
  * @description TodoItem component
  * @version 1.0.0
  */
-export function TodoItem({ id, title, isDone }: TodoItemProps) {
+export function TodoItem({ id, title, isDone, toggleTodo }: TodoItemProps) {
   return (
     <li className="flex gap-1 items-center">
       <input
@@ -18,6 +19,7 @@ export function TodoItem({ id, title, isDone }: TodoItemProps) {
         type="checkbox"
         className="cursor-pointer peer"
         defaultChecked={isDone}
+        onChange={(e) => toggleTodo(id, e.target.checked)}
       />
       <label
         htmlFor={id}

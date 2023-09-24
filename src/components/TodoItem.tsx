@@ -44,11 +44,11 @@ export function TodoItem({
 
       <div className="col-span-2 flex gap-3 items-center justify-center">
         <BiEdit
-          className="cursor-pointer text-slate-300 text-lg"
+          className="cursor-pointer text-slate-300 text-lg hover:text-slate-400"
           onClick={() => editTask(id, title)}
         />
         <BiTrash
-          className="cursor-pointer text-slate-300 text-lg"
+          className="cursor-pointer text-slate-300 text-lg hover:text-slate-400"
           onClick={() => deleteTask(id)}
         />
       </div>

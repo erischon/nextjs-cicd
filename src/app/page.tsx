@@ -2,6 +2,7 @@ import { TodoItem } from "@/components/TodoItem";
 
 import { getTodos } from "@/libs/getTodos";
 import prisma from "@/libs/prismadb";
+import Modal from "@/components/Modal";
 
 /**
  * @description Toggle task, set isDone to true or false
@@ -42,10 +43,12 @@ async function deleteTask(id: string) {
  * @description TodoItem component
  * @version 1.0.0
  */
-export default async function Home() {
+export default async function Home({ searchParams }: any) {
   const todos = await getTodos();
 
   const todosNotDone = todos.filter((todo) => !todo.isDone);
+
+  const showModal = searchParams?.modal;
 
   return (
     <main className="my-10">
@@ -54,6 +57,8 @@ export default async function Home() {
           <div className="col-span-10 font-semibold">Tasks</div>
           <div className="col-span-2 text-center font-semibold">Actions</div>
         </div>
+
+        {showModal && <Modal />}
 
         <div className="">
           {todos.map((todo) => (

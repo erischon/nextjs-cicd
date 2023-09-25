@@ -1,52 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { AiOutlineClose } from "react-icons/ai";
 
-/**
- * @description Modal component
- * @version 1.0.0
- */
-export default function Modal() {
-  const [showModal, setShowModal] = useState(true);
+type Props = {
+  title: string;
+  onClose: () => void;
+  onSubmit: () => void;
+  children: React.ReactNode;
+};
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
+export default function Modal({ title, onClose, onSubmit, children }: Props) {
+  const searchParams = useSearchParams();
+  const dialogRef = useRef<null | HTMLDialogElement>(null);
+  const showModal = searchParams.get("showModal");
+
+  useEffect(() => {
+    if (showModal === "y") {
+      dialogRef.current?.showModal();
+    } else {
+      dialogRef.current?.close();
+    }
+  }, [showModal]);
+
+  const closeDialog = () => {
+    dialogRef.current?.close();
+    onClose();
   };
 
-  return (
-    <>
-      {showModal && (
-        <div
-          className={`fixed bg-slate-800 w-full h-full top-0 left-0 z-50 transition duration-300 opacity-90 flex justify-center items-center overflow-x-hidden overflow-y-auto`}
-        >
-          <div
-            className={`bg-slate-300 text-slate-800 w-11/12 md:max-w-md mx-auto rounded-md shadow-lg z-50 overflow-y-auto`}
-          >
-            <div className="flex justify-between items-start p-4 gap-4">
-              <h2 className="text-xl font-bold">title</h2>
+  const submit = () => {
+    onSubmit();
+    closeDialog();
+  };
 
-              <div className="flex justify-center items-center cursor-pointer">
-                <AiOutlineClose
-                  className="text-xl font-bold"
-                  onClick={toggleModal}
-                />
-              </div>
-            </div>
+  const dialog: JSX.Element | null =
+    showModal === "y" ? (
+      <dialog
+        ref={dialogRef}
+        className="fixed rounded-md backdrop:bg-slate-800/90"
+      >
+        <div className="w-full max-w-full bg-slate-300 flex flex-col">
+          <div className="flex flex-row justify-between pt-2 px-5 bg-slate-400">
+            <h1 className="text-2xl">{title}</h1>
 
-            <div className="py-4 text-left px-4">message</div>
-
-            <div className="flex gap-2 items-center w-100 p-4">
-              <button
-                className={`border-2 border-slate-700 rounded-sm px-3 py-1 font-semibold`}
-              >
-                actionA?.title
-              </button>
-            </div>
+            <button
+              onClick={closeDialog}
+              className="mb-2 py-1 px-2 cursor-pointer rounded border-none w-8 h-8 font-bold bg-red-600 text-white"
+            >
+              <AiOutlineClose />
+            </button>
           </div>
+
+          <div className="px-5 py-5">{children}</div>
         </div>
-      )}
-    </>
-  );
+      </dialog>
+    ) : null;
+
+  return dialog;
 }

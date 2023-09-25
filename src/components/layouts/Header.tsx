@@ -13,7 +13,7 @@ export function Header() {
       </Link>
 
       <Button>
-        <Link href="/?modal=true">New</Link>
+        <Link href="/?showModal=y">New</Link>
       </Button>
     </header>
   );

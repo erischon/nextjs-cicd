@@ -9,7 +9,7 @@ type ButtonProps = {
  */
 export default function Button({ children, type }: ButtonProps) {
   return (
-    <button className="border-2 border-slate-400 rounded-sm py-2 px-6 hover:bg-slate-700">
+    <button className="border-2 border-slate-400 font-semibold rounded-sm py-2 px-6 hover:bg-slate-700 hover:text-slate-100">
       {children}
     </button>
   );

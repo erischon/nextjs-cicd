@@ -3,6 +3,8 @@ import { TodoItem } from "@/components/TodoItem";
 import { getTodos } from "@/libs/getTodos";
 import prisma from "@/libs/prismadb";
 import Modal from "@/components/Modal";
+import { redirect } from "next/navigation";
+import FormAddTodo from "@/components/FormAddTodo";
 
 /**
  * @description Toggle task, set isDone to true or false
@@ -39,16 +41,26 @@ async function deleteTask(id: string) {
   await prisma.todo.delete({ where: { id } });
 }
 
+async function onClose() {
+  "use server";
+
+  redirect("/");
+}
+
+async function onSubmit() {
+  "use server";
+
+  redirect("/");
+}
+
 /**
  * @description TodoItem component
  * @version 1.0.0
  */
-export default async function Home({ searchParams }: any) {
+export default async function Home() {
   const todos = await getTodos();
 
   const todosNotDone = todos.filter((todo) => !todo.isDone);
-
-  const showModal = searchParams?.modal;
 
   return (
     <main className="my-10">
@@ -58,7 +70,9 @@ export default async function Home({ searchParams }: any) {
           <div className="col-span-2 text-center font-semibold">Actions</div>
         </div>
 
-        {showModal && <Modal />}
+        <Modal title="Add Task" onClose={onClose} onSubmit={onSubmit}>
+          <FormAddTodo />
+        </Modal>
 
         <div className="">
           {todos.map((todo) => (

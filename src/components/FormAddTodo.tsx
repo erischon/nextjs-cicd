@@ -33,7 +33,7 @@ export default function FormAddTodo() {
         <input
           type="text"
           name="title"
-          className="border-2 bg-transparent rounded-sm px-2 py-1 outline-none focus-within:border-slate-100"
+          className="border-2 bg-slate-100 rounded-sm px-2 py-1 outline-none focus-within:border-slate-100"
         />
 
         <div className="flex gap-1 justify-end">

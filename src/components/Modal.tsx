@@ -5,11 +5,13 @@ import { useSearchParams } from "next/navigation";
 
 import { AiOutlineClose } from "react-icons/ai";
 
+import FormAddTodo from "@/components/FormAddTodo";
+import FormEditTodo from "@/components/FormEditTodo";
+
 type Props = {
   title: string;
   onClose: () => void;
-
-  children: React.ReactNode;
+  modalContent: JSX.Element;
 };
 
 /**
@@ -20,10 +22,12 @@ type Props = {
  * @param onSubmit  The function to submit the modal
  * @param children  The children of the modal
  */
-export default function Modal({ title, onClose, children }: Props) {
+export default function Modal({ title, onClose, modalContent }: Props) {
   const searchParams = useSearchParams();
   const dialogRef = useRef<null | HTMLDialogElement>(null);
+
   const showModal = searchParams.get("showModal");
+  const modalType = searchParams.get("modalType");
 
   useEffect(() => {
     if (showModal === "y") {
@@ -56,7 +60,7 @@ export default function Modal({ title, onClose, children }: Props) {
             </button>
           </div>
 
-          <div className="px-10 py-10">{children}</div>
+          <div className="px-10 py-10">{modalContent}</div>
         </div>
       </dialog>
     ) : null;

@@ -7,7 +7,6 @@ type TodoItemProps = {
   title: string;
   isDone: boolean;
   toggleTask: (id: string, complete: boolean) => void;
-  editTask: (id: string, title: string) => void;
   deleteTask: (id: string) => void;
 };
 
@@ -20,7 +19,6 @@ export function TodoItem({
   title,
   isDone,
   toggleTask,
-  editTask,
   deleteTask,
 }: TodoItemProps) {
   return (
@@ -36,17 +34,13 @@ export function TodoItem({
 
         <label
           htmlFor={id}
-          className="cursor-pointer peer-checked:line-through peer-checked:text-slate-500"
+          className="cursor-pointer peer-checked:line-through peer-checked:text-slate-500 line-clamp-1"
         >
           {title}
         </label>
       </div>
 
       <div className="col-span-2 flex gap-3 items-center justify-center">
-        <BiEdit
-          className="cursor-pointer text-slate-300 text-lg hover:text-slate-400"
-          onClick={() => editTask(id, title)}
-        />
         <BiTrash
           className="cursor-pointer text-slate-300 text-lg hover:text-slate-400"
           onClick={() => deleteTask(id)}

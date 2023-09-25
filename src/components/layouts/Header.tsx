@@ -16,7 +16,10 @@ export function Header() {
       </Link>
 
       <Button>
-        <Link href="/?showModal=y" className="flex items-center gap-2">
+        <Link
+          href="/?showModal=y&modalType=add"
+          className="flex items-center gap-2"
+        >
           <MdAddCircleOutline className="text-xl text-slate-200" />
           New task
         </Link>

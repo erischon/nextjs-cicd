@@ -19,18 +19,6 @@ async function toggleTask(id: string, isDone: boolean) {
 }
 
 /**
- * @description Edit task title
- * @version 1.0.0
- * @param id  The id of the task
- * @param title  The new title of the task
- */
-async function editTask(id: string, title: string) {
-  "use server";
-
-  await prisma.todo.update({ where: { id }, data: { title } });
-}
-
-/**
  * @description Delete task
  * @version 1.0.0
  * @param id  The id of the task
@@ -60,8 +48,6 @@ async function onClose() {
 export default async function Home() {
   const todos = await getTodos();
 
-  const todosNotDone = todos.filter((todo) => !todo.isDone);
-
   return (
     <main className="my-10">
       <div className="w-full">
@@ -70,9 +56,11 @@ export default async function Home() {
           <div className="col-span-2 text-center font-semibold">Actions</div>
         </div>
 
-        <Modal title="Add Task" onClose={onClose}>
-          <FormAddTodo />
-        </Modal>
+        <Modal
+          title="Add Task"
+          onClose={onClose}
+          modalContent={<FormAddTodo />}
+        />
 
         <div className="">
           {todos.map((todo) => (
@@ -80,7 +68,6 @@ export default async function Home() {
               key={todo.id}
               {...todo}
               toggleTask={toggleTask}
-              editTask={editTask}
               deleteTask={deleteTask}
             />
           ))}

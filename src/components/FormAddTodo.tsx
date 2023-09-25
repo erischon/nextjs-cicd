@@ -29,11 +29,11 @@ async function addTodo(data: FormData) {
 export default function FormAddTodo() {
   return (
     <>
-      <form action={addTodo} className="flex flex-col md:flex-row gap-2 w-full">
+      <form action={addTodo} className="flex flex-col md:flex-row gap-4 w-full">
         <input
           type="text"
           name="title"
-          className="border-2 bg-slate-100 rounded-sm px-2 py-1 outline-none focus-within:border-slate-100"
+          className="border-2 bg-slate-100 rounded-lg px-2 py-1 outline-none focus-within:border-slate-400"
         />
 
         <div className="">

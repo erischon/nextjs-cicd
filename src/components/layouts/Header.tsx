@@ -1,4 +1,7 @@
 import Link from "next/link";
+
+import { MdAddCircleOutline } from "react-icons/md";
+
 import Button from "../Button";
 
 /**
@@ -13,7 +16,10 @@ export function Header() {
       </Link>
 
       <Button>
-        <Link href="/?showModal=y">New</Link>
+        <Link href="/?showModal=y" className="flex items-center gap-2">
+          <MdAddCircleOutline className="text-xl text-slate-200" />
+          New task
+        </Link>
       </Button>
     </header>
   );

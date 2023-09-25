@@ -39,15 +39,15 @@ async function deleteTask(id: string) {
   "use server";
 
   await prisma.todo.delete({ where: { id } });
-}
-
-async function onClose() {
-  "use server";
 
   redirect("/");
 }
 
-async function onSubmit() {
+/**
+ * @description Close modal
+ * @version 1.0.0
+ */
+async function onClose() {
   "use server";
 
   redirect("/");
@@ -70,7 +70,7 @@ export default async function Home() {
           <div className="col-span-2 text-center font-semibold">Actions</div>
         </div>
 
-        <Modal title="Add Task" onClose={onClose} onSubmit={onSubmit}>
+        <Modal title="Add Task" onClose={onClose}>
           <FormAddTodo />
         </Modal>
 

@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header className="flex justify-between items-center">
       <Link href="/">
-        <h1 className="text-2xl font-bold">A Basic Todo App</h1>
+        <h1 className="text-2xl font-bold">A Simple Todo App</h1>
       </Link>
 
       <Button>
